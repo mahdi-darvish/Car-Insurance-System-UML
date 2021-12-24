@@ -1,291 +1,198 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insurance Management Dashboard</title>
+{% extends 'base.html' %}
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-
-    <link rel="stylesheet" href="../style.css" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-
-  <body>
-    <!-- include from base and delete it -->
-    <header>
-      <div class="container">
-        <nav class="navbar navbar-expand-lg sticky-top navbar-light my-4" >
-            <a class="navbar-brand" href="#">Dashboard</a>
-        </nav>
-        <div class="bg-light p-1 my-5 border rounded">
-          <ul class="nav nav-pills nav-fill">
-            <li class="nav-item">
-              <a class="nav-link" href="../Customer/index.html">Customer</a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="../Car/index.html">Car</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Insurance</a
-              >
-            </li>
-          </ul>
+{% block content %}
+<div class="col-lg-3 mb-4">
+  <div class="card text-center">
+    <div class="card-header fw-bold">Navigation Panel</div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <a href="#">Issue Policy</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#">Get Policy</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#">Edit Policy</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#">Delete Policy</a>
+      </li>
+      <li class="list-group-item">
+        <a href="">List of Polies</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-lg-9">
+  <!-- CREATE -->
+  <div class="card bg-light mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Issue Policy</h5>
+      <hr />
+      <form>
+        <div class="mb-3">
+          <label for="customerID" class="form-label">Customer ID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="customerID"
+            aria-describedby="emailHelp"
+          />
         </div>
-      </div>
-    </header>
-
-    <!-- main page -->
-    <main>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 mb-4">
-            <div class="card text-center">
-              <div class="card-header fw-bold">Navigation Panel</div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <a href="#">Issue Policy</a>
-                </li>
-                <li class="list-group-item">
-                  <a href="#">Get Policy</a>
-                </li>
-                <li class="list-group-item">
-                  <a href="#">Edit Policy</a>
-                </li>
-                <li class="list-group-item">
-                  <a href="#">Delete Policy</a>
-                </li>
-                <li class="list-group-item">
-                  <a href="">List of Polies</a>
-                </li>
-              </ul>
-            </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="price" class="form-label">price</label>
+            <input type="number" class="form-control" id="price" />
           </div>
-          <div class="col-lg-9">
-            <!-- CREATE -->
-            <div class="card bg-light mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Issue Policy</h5>
-                <hr />
-                <form>
-                  <div class="mb-3">
-                    <label for="customerID" class="form-label"
-                      >Customer ID</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="customerID"
-                      aria-describedby="emailHelp"
-                    />
-                  </div>
-                  <div class="row mb-3"> 
-                    <div class="col-md-4">
-                      <label for="price" class="form-label"
-                        >price</label
-                      >
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="price"
-                      />
-                    </div>
-                    <div class="col-md-4">
-                      <label for="status" class="form-label"
-                        >Status</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="price"
-                      />
-                    </div>
-                    <div class="col-md-4">
-                      <label for="type" class="form-label"
-                        >Type</label
-                      >
-                      <select id="type" class="form-select">
-                        <option>type1</option>
-                        <option>type2</option>
-                        <option>type3</option>
-                      </select>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-success">Create</button>
-                </form>
-              </div>
-            </div>
-            <!-- GET -->
-            <div class="card bg-light mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Get Policy</h5>
-                <hr>
-                <form>
-                  <div class="mb-3">
-                    <label for="policyID" class="form-label">Policy ID</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="policyID">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Get</button>
-                </form>
-                <hr>
-                <!-- show data -->
-                <table class="table table-striped table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Policy ID</th>
-                      <th scope="col">Customer ID</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Time left</th>
-                      <th scope="col">Issued Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123</td>
-                      <td>123</td>
-                      <td>Test</td>
-                      <td>FUll</td>
-                      <td>2</td>
-                      <td>2000/3/5</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- EDIT -->
-            <div class="card bg-light mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Edit Policy</h5>
-                <hr>
-                <form>
-                  <div class="mb-3">
-                    <label for="customerID" class="form-label"
-                      >Customer ID</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="customerID"
-                      aria-describedby="emailHelp"
-                    />
-                  </div>
-                  <div class="row mb-3"> 
-                    <div class="col-md-4">
-                      <label for="price" class="form-label"
-                        >price</label
-                      >
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="price"
-                      />
-                    </div>
-                    <div class="col-md-4">
-                      <label for="status" class="form-label"
-                        >Status</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="price"
-                      />
-                    </div>
-                    <div class="col-md-4">
-                      <label for="type" class="form-label"
-                        >Type</label
-                      >
-                      <select id="type" class="form-select">
-                        <option>type1</option>
-                        <option>type2</option>
-                        <option>type3</option>
-                      </select>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-warning">Edit</button>
-                </form>
-              </div>
-            </div>
-            <!-- DELETE -->
-            <div class="card bg-light mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Delete Policy</h5>
-                <hr>
-                <form>
-                  <div class="mb-3">
-                    <label for="policyID" class="form-label"
-                      >Policy ID</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="policyID"
-                      aria-describedby="emailHelp"
-                    />
-                  </div>
-                  <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-              </div>
-            </div>
-            <!-- LIST -->
-            <div class="card bg-light mb-3">
-              <div class="card-body">
-                <h5 class="card-title">List Policy</h5>
-                <hr>
-                <!-- show data -->
-                <table class="table table-striped table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Policy ID</th>
-                      <th scope="col">Customer ID</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Time left</th>
-                      <th scope="col">Issued Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123</td>
-                      <td>123</td>
-                      <td>Test</td>
-                      <td>FUll</td>
-                      <td>2</td>
-                      <td>2000/3/5</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          <div class="col-md-4">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" class="form-control" id="price" />
+          </div>
+          <div class="col-md-4">
+            <label for="type" class="form-label">Type</label>
+            <select id="type" class="form-select">
+              <option>type1</option>
+              <option>type2</option>
+              <option>type3</option>
+            </select>
           </div>
         </div>
-      </div>
-    </main>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+        <button type="submit" class="btn btn-success">Create</button>
+      </form>
+    </div>
+  </div>
+  <!-- GET -->
+  <div class="card bg-light mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Get Policy</h5>
+      <hr />
+      <form>
+        <div class="mb-3">
+          <label for="policyID" class="form-label">Policy ID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="policyID"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Get</button>
+      </form>
+      <hr />
+      <!-- show data -->
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Policy ID</th>
+            <th scope="col">Customer ID</th>
+            <th scope="col">Status</th>
+            <th scope="col">Type</th>
+            <th scope="col">Time left</th>
+            <th scope="col">Issued Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>123</td>
+            <td>123</td>
+            <td>Test</td>
+            <td>FUll</td>
+            <td>2</td>
+            <td>2000/3/5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- EDIT -->
+  <div class="card bg-light mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Edit Policy</h5>
+      <hr />
+      <form>
+        <div class="mb-3">
+          <label for="customerID" class="form-label">Customer ID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="customerID"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="price" class="form-label">price</label>
+            <input type="number" class="form-control" id="price" />
+          </div>
+          <div class="col-md-4">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" class="form-control" id="price" />
+          </div>
+          <div class="col-md-4">
+            <label for="type" class="form-label">Type</label>
+            <select id="type" class="form-select">
+              <option>type1</option>
+              <option>type2</option>
+              <option>type3</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-warning">Edit</button>
+      </form>
+    </div>
+  </div>
+  <!-- DELETE -->
+  <div class="card bg-light mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Delete Policy</h5>
+      <hr />
+      <form>
+        <div class="mb-3">
+          <label for="policyID" class="form-label">Policy ID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="policyID"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+  <!-- LIST -->
+  <div class="card bg-light mb-3">
+    <div class="card-body">
+      <h5 class="card-title">List Policy</h5>
+      <hr />
+      <!-- show data -->
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Policy ID</th>
+            <th scope="col">Customer ID</th>
+            <th scope="col">Status</th>
+            <th scope="col">Type</th>
+            <th scope="col">Time left</th>
+            <th scope="col">Issued Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>123</td>
+            <td>123</td>
+            <td>Test</td>
+            <td>FUll</td>
+            <td>2</td>
+            <td>2000/3/5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% block content %}
