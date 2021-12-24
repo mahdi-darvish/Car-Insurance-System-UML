@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Car, Insurance_Agent, Policy, Customer, Notification
+from .models import Car_table, Car_table, Insurance_Agent_table, Policy_table, Customer_table, Notification_table
 
-admin.site.register(Car)
-admin.site.register(Insurance_Agent)
-admin.site.register(Policy)
-admin.site.register(Customer)
-admin.site.register(Notification)
+admin.site.register(Car_table)
+admin.site.register(Insurance_Agent_table)
+admin.site.register(Policy_table)
+admin.site.register(Customer_table)
+admin.site.register(Notification_table)

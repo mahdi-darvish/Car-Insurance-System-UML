@@ -1,3 +1,5 @@
+from main.models import Customer_table
+
 class Customer:
     def __init__(self, address, name, customerID, email, phone):
         self.address = address
@@ -7,7 +9,11 @@ class Customer:
         self.phone = phone
 
     def create(self):
-        pass
+        flag = False
+        x = Customer_table.values_list('emails')
+        print(x)
+        cust = Customer_table.create(self.name, self.address, self.email, self.phone)
+        return cust
 
     def get(self, customerID):
         pass

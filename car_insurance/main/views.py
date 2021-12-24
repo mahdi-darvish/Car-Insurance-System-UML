@@ -5,6 +5,8 @@ from django.http import HttpResponse
 
 
 def addCustomer(request):
+
+    
     return render(request, 'Customer/create.html', {})
 
 
