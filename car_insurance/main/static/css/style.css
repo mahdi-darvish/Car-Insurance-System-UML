@@ -18,5 +18,13 @@ a {
 
 .card {
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  border-radius: 0.6rem!important;
   /* border-color: #0d6efd!important; */
+}
+
+.rounded, .list-group{
+  border-radius: 0.6rem!important;
+}
+.active{
+  border-radius: 0.5rem!important;
 }
