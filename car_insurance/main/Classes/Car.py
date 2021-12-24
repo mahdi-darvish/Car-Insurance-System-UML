@@ -1,8 +1,8 @@
 class Car:
-    def __init__(self, engineNum, Model, YearOfManufacture):
+    def __init__(self, engineNum, model, yearOfManufacture):
         self.engineNum = engineNum
-        self.Model = Model
-        self.YearOfManufacture = YearOfManufacture
+        self.model = model
+        self.yearOfManufacture = yearOfManufacture
 
     def add(self):
         pass
