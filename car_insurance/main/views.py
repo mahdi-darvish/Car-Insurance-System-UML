@@ -1,13 +1,31 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from main.Classes.Cusotmer import Customer
+from main.models import Customer_table
+
+
 
 # Customer
 
 
 def addCustomer(request):
-
-    
-    return render(request, 'Customer/create.html', {})
+    print(Customer_table.objects.first().customer_id)
+    error = ''
+    success = ''
+    if request.method=="POST":
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        cust = Customer(address, name, email, phone)
+        response = cust.create()
+        if response:
+            error = 'Email already in use.'
+        else:
+            success = 'Customer, {}, successfully added.'.format(name)
+    print(error)
+    print(success)
+    return render(request, 'Customer/create.html', {error:error, success:success})
 
 
 def editCustomer(request):

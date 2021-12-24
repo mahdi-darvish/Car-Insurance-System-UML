@@ -5,31 +5,32 @@
     <div class="card-body">
       <h5 class="card-title">Create Customer</h5>
       <hr />
-      <form>
+      <form action='/customer/add' method='POST'>
+        {% csrf_token %}
         <div class="col-md-12 mb-3">
           <label for="Eamil" class="form-label">Email</label>
-          <input type="email" class="form-control" id="Email" />
+          <input type="email" class="form-control" name="email" />
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
             <label for="name" class="form-label">Name</label>
             <input
-              type="number"
+              type="text"
               class="form-control"
-              id="name"
+              name="name"
               aria-describedby="name"
             />
           </div>
           <div class="col-md-6">
-            <label for="phoneNum" class="form-label"
+            <label for="phone" class="form-label"
               >Phone number</label
             >
-            <input type="tel" class="form-control" id="phoneNum" />
+            <input type="number" class="form-control" name="phone" />
           </div>
         </div>
         <div class="col-md-12 mb-3">
           <label for="address" class="form-label">Address</label>
-          <input type="text" class="form-control" id="address" />
+          <input type="text" class="form-control" name="address" />
         </div>
         <button type="submit" class="btn btn-success">Create</button>
       </form>

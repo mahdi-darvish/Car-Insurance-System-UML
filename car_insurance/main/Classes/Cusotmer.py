@@ -1,19 +1,22 @@
+from django.db.models.expressions import F
 from main.models import Customer_table
 
 class Customer:
-    def __init__(self, address, name, customerID, email, phone):
+    def __init__(self, address, name, email, phone):
         self.address = address
         self.name = name
-        self.customerID = customerID
         self.email = email
         self.phone = phone
 
     def create(self):
         flag = False
-        x = Customer_table.values_list('emails')
-        print(x)
-        cust = Customer_table.create(self.name, self.address, self.email, self.phone)
-        return cust
+        emails = Customer_table.objects.values_list('email')
+        for email in emails:
+             if email[0] == self.email:
+                flag = True
+                return flag
+        cust = Customer_table.objects.create(customer_name=self.name, address=self.address, email=self.email, phone=self.phone)
+        return flag
 
     def get(self, customerID):
         pass
