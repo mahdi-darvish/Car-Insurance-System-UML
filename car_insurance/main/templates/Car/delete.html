@@ -1,0 +1,22 @@
+{% extends 'Customer/index.html' %}
+
+{% block customerDelete %} 
+<div class="card bg-light mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Delete Customer</h5>
+      <hr />
+      <form>
+        <div class="mb-3">
+          <label for="CustomerID" class="form-label">Customer ID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="CustomerID"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
