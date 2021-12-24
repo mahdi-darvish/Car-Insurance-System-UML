@@ -5,41 +5,44 @@
     <div class="card-body">
       <h5 class="card-title">Edit Customer</h5>
       <hr />
-      <form action="">
+      <form action="" method='GET'>
         <div class="col-md-12 mb-3">
           <label for="CustomerID" class="form-label">Customer ID</label>
-          <input type="number" class="form-control" name="CustomerID" />
+          <input type="number" class="form-control" name="CustomerID" required />
         </div>
         <button type="submit" class="btn btn-success">Get Customer</button>
       </form>
-      <form accept="">
+      
+      {% if success %}
+      <form action="/customer/edit" method='POST'>
+        {% csrf_token %}
+        <div class="col-md-12 mb-3">
+          <label for="CustomerID" class="form-label">Customer ID</label>
+          <input value="{{success.customer_id}}" type="number" class="form-control" name="CustomerID" readonly />
+        </div>
         <div class="col-md-12 mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" name="email" />
+          <input value="{{success.email}}" type="email" class="form-control" name="email" />
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
             <label for="name" class="form-label">Name</label>
-            <input
-              type="number"
-              class="form-control"
-              name="name"
-              aria-describedby="name"
-            />
+            <input value="{{success.customer_name}}" type="text" class="form-control" name="name" />
           </div>
           <div class="col-md-6">
-            <label for="phoneNum" class="form-label"
+            <label for="phone" class="form-label"
               >Phone number</label
             >
-            <input type="tel" class="form-control" name="phone" />
+            <input value="{{success.phone}}" type="number" class="form-control" name="phone" />
           </div>
         </div>
         <div class="col-md-12 mb-3">
           <label for="address" class="form-label">Address</label>
-          <input type="text" class="form-control" name="address" />
+          <input value="{{success.address}}" type="text" class="form-control" name="address" />
         </div>
         <button type="submit" class="btn btn-warning">Edit</button>
       </form>
+      {% endif %}
     </div>
   </div>
 

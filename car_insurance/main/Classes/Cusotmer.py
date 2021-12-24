@@ -18,14 +18,18 @@ class Customer:
         cust = Customer_table.objects.create(customer_name=self.name, address=self.address, email=self.email, phone=self.phone)
         return flag
 
-    def get(self, customerID):
-        pass
+    @staticmethod
+    def get(customerID):
+        cust = Customer_table.objects.filter(customer_id=customerID)
+        return cust
 
     def update(self, customerID):
-        pass
+        cust = Customer_table.objects.filter(customer_id=customerID).update(customer_name=self.name, address=self.address, email=self.email, phone=self.phone)
+        return cust
 
-    def updateProfile(self):
+    def updateProfile():
         pass
-
-    def list(self):
-        pass
+    
+    @staticmethod
+    def list():
+        return Customer_table.objects.all()

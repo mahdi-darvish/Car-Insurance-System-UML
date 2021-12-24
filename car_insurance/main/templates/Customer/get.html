@@ -5,14 +5,14 @@
     <div class="card-body">
       <h5 class="card-title">Get Customer</h5>
       <hr />
-      <form>
+      <form action="/customer/get" method='POST'>
+        {% csrf_token %}
         <div class="mb-3">
           <label for="CustomerID" class="form-label">Customer ID</label>
           <input
             type="number"
             class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="CustomerID"
+            name="CustomerID"
           />
         </div>
         <button type="submit" class="btn btn-primary">Get</button>
@@ -26,15 +26,25 @@
             <th scope="col">Customer ID</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Address</th>
             <th scope="col">Cars</th>
             <th scope="col">Phone</th>
             <th scope="col">Polices</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            
-          </tr>
+          {% for result in success %}
+            <tr>
+              <th scope="col">{{forloop.counter}}</th>
+              <th scope="col">{{result.customer_id}}</th>
+              <th scope="col">{{result.customer_name}}</th>
+              <th scope="col">{{result.email}}</th>
+              <th scope="col">{{result.address}}</th>
+              <th scope="col"></th>
+              <th scope="col">{{result.phone}}</th>
+              <th scope="col"></th>
+            </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>

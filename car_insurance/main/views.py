@@ -23,13 +23,35 @@ def addCustomer(request):
             error = 'Email already in use.'
         else:
             success = 'Customer, {}, successfully added.'.format(name)
-    print(error)
-    print(success)
-    return render(request, 'Customer/create.html', {error:error, success:success})
+    return render(request, 'Customer/create.html', {'error':error, 'success':success})
 
 
 def editCustomer(request):
-    return render(request, 'Customer/edit.html', {})
+    error = ''
+    success = ''
+    prompt = ''
+    cust_id = None
+    if request.method=="GET":
+        cust_id = request.GET.get('CustomerID')
+        cust = Customer.get(cust_id)
+        if not cust:
+            error = 'Customer ID not found'
+        else:
+            success = cust[0]
+
+    if request.method=="POST":
+        cust_id = request.POST.get('CustomerID')
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        print(cust_id)
+        print(email)
+        cust = Customer(address, name, email, phone)
+        cust.update(cust_id)
+        prompt = 'Customer number {}, successfully updated.'.format(cust_id)
+        print(prompt)
+    return render(request, 'Customer/edit.html', {'error':error, 'success':success, 'prompt': prompt})
 
 
 def editCustomerProfile(request):
@@ -37,11 +59,24 @@ def editCustomerProfile(request):
 
 
 def getCustomer(request):
-    return render(request, 'Customer/get.html', {})
+    error = ''
+    success = ''
+    if request.method=="POST":
+        cust_id = request.POST.get('CustomerID')
+        cust = Customer.get(cust_id)
+        if not cust:
+            error = 'Customer ID not found'
+        else:
+            success = cust
+            print(success)
+
+    return render(request, 'Customer/get.html', {'error':error, 'success':success})
 
 
 def listCustomers(request):
-    return render(request, 'Customer/list.html', {})
+    results = Customer.list()
+    print(results)
+    return render(request, 'Customer/list.html', {'results': results})
 
 # Car
 
