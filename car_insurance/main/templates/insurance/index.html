@@ -6,193 +6,39 @@
     <div class="card-header fw-bold">Navigation Panel</div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
-        <a href="#">Issue Policy</a>
+        <a href="/insurance/add">Issue Policy</a>
       </li>
       <li class="list-group-item">
-        <a href="#">Get Policy</a>
+        <a href="/insurance/get">Get Policy</a>
       </li>
       <li class="list-group-item">
-        <a href="#">Edit Policy</a>
+        <a href="/insurance/edit">Edit Policy</a>
       </li>
       <li class="list-group-item">
-        <a href="#">Delete Policy</a>
+        <a href="/insurance/delete">Delete Policy</a>
       </li>
       <li class="list-group-item">
-        <a href="">List of Polies</a>
+        <a href="/insurance/list">List of Polies</a>
       </li>
     </ul>
   </div>
 </div>
 <div class="col-lg-9">
   <!-- CREATE -->
-  <div class="card bg-light mb-3">
-    <div class="card-body">
-      <h5 class="card-title">Issue Policy</h5>
-      <hr />
-      <form>
-        <div class="mb-3">
-          <label for="customerID" class="form-label">Customer ID</label>
-          <input
-            type="number"
-            class="form-control"
-            id="customerID"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <label for="price" class="form-label">price</label>
-            <input type="number" class="form-control" id="price" />
-          </div>
-          <div class="col-md-4">
-            <label for="status" class="form-label">Status</label>
-            <input type="text" class="form-control" id="price" />
-          </div>
-          <div class="col-md-4">
-            <label for="type" class="form-label">Type</label>
-            <select id="type" class="form-select">
-              <option>type1</option>
-              <option>type2</option>
-              <option>type3</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-success">Create</button>
-      </form>
-    </div>
-  </div>
+  {% block policyCreate %}
+  {% endblock %}
   <!-- GET -->
-  <div class="card bg-light mb-3">
-    <div class="card-body">
-      <h5 class="card-title">Get Policy</h5>
-      <hr />
-      <form>
-        <div class="mb-3">
-          <label for="policyID" class="form-label">Policy ID</label>
-          <input
-            type="number"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="policyID"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary">Get</button>
-      </form>
-      <hr />
-      <!-- show data -->
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Policy ID</th>
-            <th scope="col">Customer ID</th>
-            <th scope="col">Status</th>
-            <th scope="col">Type</th>
-            <th scope="col">Time left</th>
-            <th scope="col">Issued Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>123</td>
-            <td>123</td>
-            <td>Test</td>
-            <td>FUll</td>
-            <td>2</td>
-            <td>2000/3/5</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  {% block policyGet %}
+  {% endblock %}
   <!-- EDIT -->
-  <div class="card bg-light mb-3">
-    <div class="card-body">
-      <h5 class="card-title">Edit Policy</h5>
-      <hr />
-      <form>
-        <div class="mb-3">
-          <label for="customerID" class="form-label">Customer ID</label>
-          <input
-            type="number"
-            class="form-control"
-            id="customerID"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <label for="price" class="form-label">price</label>
-            <input type="number" class="form-control" id="price" />
-          </div>
-          <div class="col-md-4">
-            <label for="status" class="form-label">Status</label>
-            <input type="text" class="form-control" id="price" />
-          </div>
-          <div class="col-md-4">
-            <label for="type" class="form-label">Type</label>
-            <select id="type" class="form-select">
-              <option>type1</option>
-              <option>type2</option>
-              <option>type3</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-warning">Edit</button>
-      </form>
-    </div>
-  </div>
+  {% block policyEdit %} 
+  {% endblock %}
   <!-- DELETE -->
-  <div class="card bg-light mb-3">
-    <div class="card-body">
-      <h5 class="card-title">Delete Policy</h5>
-      <hr />
-      <form>
-        <div class="mb-3">
-          <label for="policyID" class="form-label">Policy ID</label>
-          <input
-            type="number"
-            class="form-control"
-            id="policyID"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
-    </div>
-  </div>
+  {% block policyDelete %} 
+  {% endblock %}
   <!-- LIST -->
-  <div class="card bg-light mb-3">
-    <div class="card-body">
-      <h5 class="card-title">List Policy</h5>
-      <hr />
-      <!-- show data -->
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Policy ID</th>
-            <th scope="col">Customer ID</th>
-            <th scope="col">Status</th>
-            <th scope="col">Type</th>
-            <th scope="col">Time left</th>
-            <th scope="col">Issued Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>123</td>
-            <td>123</td>
-            <td>Test</td>
-            <td>FUll</td>
-            <td>2</td>
-            <td>2000/3/5</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-{% block content %}
+  {% block policieslist %}
+  {% endblock %}
+
+
+{% endblock %}

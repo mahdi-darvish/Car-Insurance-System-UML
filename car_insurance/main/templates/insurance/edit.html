@@ -1,0 +1,40 @@
+{% extends 'insurance/index.html' %}
+
+{% block policyEdit %} 
+<div class="card bg-light mb-3">
+  <div class="card-body">
+    <h5 class="card-title">Edit Policy</h5>
+    <hr />
+    <form>
+      <div class="mb-3">
+        <label for="customerID" class="form-label">Customer ID</label>
+        <input
+          type="number"
+          class="form-control"
+          id="customerID"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="price" class="form-label">price</label>
+          <input type="number" class="form-control" id="price" />
+        </div>
+        <div class="col-md-4">
+          <label for="status" class="form-label">Status</label>
+          <input type="text" class="form-control" id="price" />
+        </div>
+        <div class="col-md-4">
+          <label for="type" class="form-label">Type</label>
+          <select id="type" class="form-select">
+            <option>type1</option>
+            <option>type2</option>
+            <option>type3</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-warning">Edit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

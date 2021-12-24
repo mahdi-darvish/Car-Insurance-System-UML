@@ -1,0 +1,38 @@
+{% extends 'car/index.html' %}
+
+{% block carGet %}
+<div class="card bg-light mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Get Car</h5>
+      <hr />
+      <form>
+        <div class="mb-3">
+          <label for="engNum" class="form-label">Engine Number</label>
+          <input
+            type="number"
+            class="form-control"
+            id="engNum"
+            aria-describedby="engNum"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Get</button>
+      </form>
+      <hr />
+      <!-- show data -->
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Engine Number</th>
+            <th scope="col">Model</th>
+            <th scope="col">Year of Manufacture</th>
+          </tr>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          </tr>
+        </tbody>
+    </div>
+  </div>
+{% endblock %}

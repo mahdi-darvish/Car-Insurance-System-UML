@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-lg-3 mb-4">
+  <div class="card text-center">
+    <div class="card-header fw-bold">Navigation Panel</div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <a href="/car/add">Create Car</a>
+      </li>
+      <li class="list-group-item">
+        <a href="/car/get">Get Car</a>
+      </li>
+      <li class="list-group-item">
+        <a href="/car/edit">Edit Car</a>
+      </li>
+      <li class="list-group-item">
+        <a href="/car/list">List of Car</a>
+      </li>
+      <li class="list-group-item">
+        <a href="/car/delete">Delete Car</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-lg-9">
+  <!-- CREATE -->
+  {% block carCreate %}
+  {% endblock %}
+  <!-- GET -->
+  {% block carGet %}
+  {% endblock %}
+  <!-- EDIT -->
+  {% block carEdit %}
+  {% endblock %}
+  <!-- DELETE -->
+  {% block carDelete %}
+  {% endblock %}
+  <!-- list -->
+  {% block carlist %}
+  {% endblock %}
+
+</div>
+{% endblock %}

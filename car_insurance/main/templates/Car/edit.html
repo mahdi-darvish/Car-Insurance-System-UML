@@ -1,0 +1,41 @@
+{% extends 'car/index.html' %}
+
+{% block carEdit %} 
+<div class="card bg-light mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Edit Car</h5>
+      <hr />
+      <form action="">
+        <div class="col-md-12 mb-3">
+          <label for="CustomerID" class="form-label">Engine Number</label>
+          <input type="number" class="form-control" id="CustomerID" />
+        </div>
+        <button type="submit" class="btn btn-primary">Show</button>
+      </form>
+      <form>
+        <div class="col-md-12 mb-3">
+          <label for="engineNum" class="form-label">Engine Number</label>
+          <input type="number" class="form-control" id="engineNum" />
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="model" class="form-label">Model</label>
+            <input
+              type="text"
+              class="form-control"
+              id="model"
+              aria-describedby="model"
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="yearOfManufacture" class="form-label">Year of Manufacture</label>
+            <input type="date" class="form-control" id="yearOfManufacture" />
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success">Create</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

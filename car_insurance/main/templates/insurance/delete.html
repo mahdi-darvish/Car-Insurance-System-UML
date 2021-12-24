@@ -1,17 +1,18 @@
-{% extends 'car/index.html' %}
-{% block carDelete %} 
+{% extends 'insurance/index.html' %}
+
+{% block policyDelete %} 
 <div class="card bg-light mb-3">
     <div class="card-body">
-      <h5 class="card-title">Delete Car</h5>
+      <h5 class="card-title">Delete Policy</h5>
       <hr />
       <form>
         <div class="mb-3">
-          <label for="EngineNum" class="form-label">Engine Number</label>
+          <label for="PolicyID" class="form-label">Policy ID</label>
           <input
             type="number"
             class="form-control"
-            id="EngineNum"
-            aria-describedby="EngineNum"
+            id="PolicyID"
+            aria-describedby="PolicyID"
           />
         </div>
         <button type="submit" class="btn btn-danger">Delete</button>
