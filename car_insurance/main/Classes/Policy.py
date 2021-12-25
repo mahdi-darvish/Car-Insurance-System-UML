@@ -1,7 +1,10 @@
+from main.models import Policy_table, Customer_table, Car_table, Insurance_Agent_table
+
 class Policy:
-    def __init__(self, policyID, customerID, startDate, endDate, price, status, policyType):
-        self.policyID = policyID
+    def __init__(self, customerID, engineNumber, startDate, endDate, price, status, policyType):
         self.customerID = customerID
+        self.engineNumber = engineNumber
+        self.agentID = 1
         self.endDate = endDate
         self.startDate = startDate
         self.price = price
@@ -9,7 +12,19 @@ class Policy:
         self.policyType = policyType
 
     def issuePolicy(self):
-        pass
+        flag = False
+        engs = Policy_table.objects.values_list('engine_number')
+        print(engs)
+        for eng in engs:
+             if int(eng[0]) == int(self.engineNumber):
+                flag = True
+                return flag
+        customer = Customer_table.objects.get(customer_id=self.customerID)
+        agent = Insurance_Agent_table.objects.get(agent_id=self.agentID)
+        car = Car_table.objects.get(engine_number=self.engineNumber)
+        cust = Policy_table.objects.create(customer_id=customer, agent_id=agent, engine_number=car, price=self.price, 
+                                            status=self.status, type=self.policyType, start_date=self.startDate, end_date=self.endDate)
+        return flag
 
     def get(self, policyID):
         pass

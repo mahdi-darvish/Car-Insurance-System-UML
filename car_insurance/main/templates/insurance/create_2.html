@@ -31,10 +31,22 @@
           <label for="price" class="form-label">price</label>
           <input type="number" class="form-control" name="price" />
         </div>
-        <div class="col-md-4">
-          <label for="status" class="form-label">Status</label>
-          <input readonly type="text" value='Active' class="form-control" name="status" />
+        <div class="col-md-6">
+          <label for="start" class="form-label">Start Date</label>
+          <input type="date" class="form-control" name="start" />
         </div>
+        <div class="col-md-6">
+          <label for="finish" class="form-label">End Date</label>
+          <input type="date" class="form-control" name="finish" />
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="status" class="form-label">Status</label>
+          <select required class="form-select" aria-label="Choose Customer ID" name="status">
+            <option value='' selected disabled>Open this select menu</option>
+            <option value='True'>Active</option>
+            <option value='False'>To be activated</option>
+          </select>
+          </div>
         <div class="col-md-4">
           <label for="type" class="form-label">Type</label>
           <select name="type" class="form-select">
