@@ -245,7 +245,7 @@ def getPolicy(request):
             success = policy
     print(error)
     print(success)
-    return render(request, 'insurance/get.html', {'error':error, 'success':success[0]})
+    return render(request, 'insurance/get.html', {'error':error, 'success':success})
 
 
 def listPolicies(request):
