@@ -8,13 +8,24 @@ from main.Classes.Notification import Notification
 from schedule import Scheduler
 import threading
 import time
+from datetime import datetime
+
 
 def job():
     notif = Notification()
-    notif.send()
+    # notif.send()
     print("Checked for policy Expiration date")
 
-def run_continuously(self, interval=1000):
+    start = Policy_table.objects.values_list('start_date')
+    end = Policy_table.objects.values_list('end_date')
+    policy_id = Policy_table.objects.values_list('policy_id')
+
+    for item in range(len(start)):
+        policy = policy_id[item][0]
+        if int(str(start[item][0]).replace('-','')) < int(str(datetime.today().strftime('%Y-%m-%d')).replace('-','')) < int(str(end[item][0]).replace('-','')):
+            Policy_table.objects.filter(policy_id=policy).update(status=True)
+
+def run_continuously(self, interval=100):
 
     cease_continuous_run = threading.Event()
 
