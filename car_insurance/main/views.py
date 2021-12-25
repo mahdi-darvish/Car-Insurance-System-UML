@@ -310,6 +310,7 @@ def getPolicy(request):
 
 def listPolicies(request):
     results = Policy.list()
+    print(results[0].engine_number.engine_number)
     return render(request, 'insurance/list.html', {'results': results})
 
 
