@@ -18,8 +18,14 @@
           </tr>
         </thead>
         <tbody>
+          {% for result in results %}
           <tr>
+            <th scope="col">{{forloop.counter}}</th>
+            <th scope="col">{{result.engine_number}}</th>
+            <th scope="col">{{result.model}}</th>
+            <th scope="col">{{result.manufacture_year}}</th>
           </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>

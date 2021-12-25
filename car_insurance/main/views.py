@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from main import models
 from main.Classes.Cusotmer import Customer
-from main.models import Customer_table
+from main.Classes.Car import Car
 
 
 
@@ -9,7 +10,6 @@ from main.models import Customer_table
 
 
 def addCustomer(request):
-    print(Customer_table.objects.first().customer_id)
     error = ''
     success = ''
     if request.method=="POST":
@@ -50,7 +50,6 @@ def editCustomer(request):
         cust = Customer(address, name, email, phone)
         cust.update(cust_id)
         prompt = 'Customer number {}, successfully updated.'.format(cust_id)
-        print(prompt)
     return render(request, 'Customer/edit.html', {'error':error, 'success':success, 'prompt': prompt})
 
 
@@ -65,36 +64,95 @@ def getCustomer(request):
             error = 'Customer ID not found'
         else:
             success = cust
-            print(success)
 
     return render(request, 'Customer/get.html', {'error':error, 'success':success})
 
 
 def listCustomers(request):
     results = Customer.list()
-    print(results)
     return render(request, 'Customer/list.html', {'results': results})
 
+
 # Car
-
-
 def addCar(request):
-    return render(request, 'Car/create.html', {})
+    error = ''
+    success = ''
+    cust_list = Customer.list()
+    if request.method=="POST":
+        customer_id = request.POST.get('customerID')
+        engine_number = request.POST.get('engine_number')
+        model = request.POST.get('model')
+        manufacture_year = request.POST.get('manufacture_year')
+        car = Car(engine_number, model, manufacture_year)
+        response = car.add(customer_id)
+        if response:
+            error = 'Car Engine already exist.'     
+        else:
+            success = 'Car, {}, successfully added.'.format(engine_number)
+
+    return render(request, 'Car/create.html', {'error':error, 'success':success, 'cust_list': cust_list})
 
 
 def editCar(request):
-    return render(request, 'Car/edit.html', {})
+    error = ''
+    success = ''
+    prompt = ''
+    engine_number = None
+    if request.method=="GET":
+        engine_number = request.GET.get('engine_number')
+        car = Car.get(engine_number)
+        if not car:
+            error = 'Car Engine number not found.'
+        else:
+            success = car[0]
+
+    if request.method=="POST":
+        engine_number = request.POST.get('engineNum')
+        model = request.POST.get('model')
+        manufacture_year = request.POST.get('yearOfManufacture')
+
+        car = Car(engine_number, model, manufacture_year)
+        car.edit(engine_number)
+        prompt = 'Car with Engine number {}, successfully updated.'.format(engine_number)
+    print(success)
+    print(error)
+    print(prompt)
+    return render(request, 'Car/edit.html', {'error':error, 'success':success, 'prompt': prompt})
 
 
 def getCar(request):
-    return render(request, 'Car/get.html', {})
+    error = ''
+    success = ''
+    if request.method=="POST":
+        engine_number = request.POST.get('engine_number')
+        car = Car.get(engine_number)
+        if not car:
+            error = 'Engine Number not found'
+        else:
+            success = car
+    print(error)
+    print(success)
+    return render(request, 'Car/get.html', {'error':error, 'success':success})
 
 
 def listCars(request):
-    return render(request, 'Car/list.html', {})
+    results = Car.list()
+    print(results)
+    return render(request, 'Car/list.html', {'results': results})
 
 
 def deleteCar(request):
+    error = ''
+    success = ''
+    if request.method=="POST":
+        engine_number = request.POST.get('engine_number')
+        car = Car.delete(engine_number)
+        if car:
+            error = 'Engine Number not found'
+        else:
+            success = 'Car {} successfully deleted'.format(engine_number)
+    print(error)
+    print(success)
     return render(request, 'Car/delete.html', {})
 # ---------------------------
 

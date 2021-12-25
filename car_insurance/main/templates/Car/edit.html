@@ -5,17 +5,19 @@
     <div class="card-body">
       <h5 class="card-title">Edit Car</h5>
       <hr />
-      <form action="">
+      <form action="/car/edit" method='GET'>
         <div class="col-md-12 mb-3">
-          <label for="CustomerID" class="form-label">Engine Number</label>
-          <input type="number" class="form-control" id="CustomerID" />
+          <label for="engine_number" class="form-label" >Engine Number</label>
+          <input type="number" class="form-control" name="engine_number" required/>
         </div>
         <button type="submit" class="btn btn-primary">Show</button>
       </form>
-      <form>
+      {% if success %}
+      <form action='/car/edit' method='POST'>
+        {% csrf_token %}
         <div class="col-md-12 mb-3">
           <label for="engineNum" class="form-label">Engine Number</label>
-          <input type="number" class="form-control" id="engineNum" />
+          <input value="{{success.engine_number}}" type="number" class="form-control" name="engineNum" readonly />
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
@@ -23,18 +25,19 @@
             <input
               type="text"
               class="form-control"
-              id="model"
-              aria-describedby="model"
+              name="model"
+              value="{{success.model}}"
             />
           </div>
           <div class="col-md-6">
             <label for="yearOfManufacture" class="form-label">Year of Manufacture</label>
-            <input type="date" class="form-control" id="yearOfManufacture" />
+            <input required type="date" class="form-control" name="yearOfManufacture" value="{{success.manufacture_year}}"/>
           </div>
         </div>
         
         <button type="submit" class="btn btn-success">Create</button>
       </form>
+      {% endif %}
     </div>
   </div>
 

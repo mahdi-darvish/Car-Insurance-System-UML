@@ -5,14 +5,14 @@
     <div class="card-body">
       <h5 class="card-title">Get Car</h5>
       <hr />
-      <form>
+      <form action='/car/get' method='POST'>
+        {% csrf_token %}
         <div class="mb-3">
-          <label for="engNum" class="form-label">Engine Number</label>
+          <label for="engine_number" class="form-label">Engine Number</label>
           <input
             type="number"
             class="form-control"
-            id="engNum"
-            aria-describedby="engNum"
+            name="engine_number"
           />
         </div>
         <button type="submit" class="btn btn-primary">Get</button>

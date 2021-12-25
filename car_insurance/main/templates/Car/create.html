@@ -5,10 +5,21 @@
     <div class="card-body">
       <h5 class="card-title">Create Car</h5>
       <hr />
-      <form>
+      
+      <form action='/car/add' method='POST'>
+        {% csrf_token %}
         <div class="col-md-12 mb-3">
-          <label for="engineNum" class="form-label">Engine Number</label>
-          <input type="number" class="form-control" id="engineNum" />
+        <label for="customerID" class="form-label">Customer ID</label>
+        <select required class="form-select" aria-label="Choose Customer ID" name="customerID">
+          <option value='' selected disabled>Open this select menu</option>
+          {% for cust in cust_list %}
+          <option value="{{cust.customer_id}}">{{cust.customer_id}} - {{cust.customer_name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+        <div class="col-md-12 mb-3">
+          <label for="engine_number" class="form-label">Engine Number</label>
+          <input type="number" class="form-control" name="engine_number"  required/>
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
@@ -16,13 +27,13 @@
             <input
               type="text"
               class="form-control"
-              id="model"
+              name="model"
               aria-describedby="model"
             />
           </div>
           <div class="col-md-6">
-            <label for="yearOfManufacture" class="form-label">Year of Manufacture</label>
-            <input type="date" class="form-control" id="yearOfManufacture" />
+            <label for="manufacture_year" class="form-label">Year of Manufacture</label>
+            <input type="date" class="form-control" name="manufacture_year" />
           </div>
         </div>
         
