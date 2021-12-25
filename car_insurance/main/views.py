@@ -65,20 +65,22 @@ def editCustomer(request):
 def getCustomer(request):
     error = ''
     success = ''
+    cars = ''
+    policies = ''
     if request.method == "POST":
         cust_id = request.POST.get('CustomerID')
-        cust = Customer.get(cust_id)
+        cust, cars, policies = Customer.get(cust_id)
         if not cust:
             error = 'Customer ID not found'
         else:
             success = cust
 
-    return render(request, 'Customer/get.html', {'error': error, 'success': success})
+    return render(request, 'Customer/get.html', {'error': error, 'success': success, 'cars': cars, 'policies': policies})
 
 
 def listCustomers(request):
     results = Customer.list()
-    return render(request, 'Customer/list.html', {'results': results})
+    return render(request, 'Customer/list.html', {'results': results,})
 
 
 # Car

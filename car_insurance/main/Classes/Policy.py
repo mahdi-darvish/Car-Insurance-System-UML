@@ -1,5 +1,6 @@
 from main.models import Policy_table, Customer_table, Car_table, Insurance_Agent_table
 
+
 class Policy:
     def __init__(self, customerID, engineNumber, startDate, endDate, price, status, policyType):
         self.customerID = customerID

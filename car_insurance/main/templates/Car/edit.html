@@ -41,7 +41,7 @@
           </div>
           <div class="col-md-6">
             <label for="yearOfManufacture" class="form-label">Year of Manufacture</label>
-            <input required type="date" class="form-control" name="yearOfManufacture" value="{{success.manufacture_year}}"/>
+            <input required type="date" class="form-control" name="yearOfManufacture" value="{{success.manufacture_year  |date:"Y-m-d"}}"/>
           </div>
         </div>
         

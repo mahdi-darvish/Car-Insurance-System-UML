@@ -54,9 +54,9 @@
               <th scope="col">{{result.customer_name}}</th>
               <th scope="col">{{result.email}}</th>
               <th scope="col">{{result.address}}</th>
-              <th scope="col"></th>
+              <th scope="col">[{% for car in  cars%}{{car.engine_number}}, {% endfor %}]</th>
               <th scope="col">{{result.phone}}</th>
-              <th scope="col"></th>
+              <th scope="col">[{% for policy in  policies%}{{policy.policy_id}}, {% endfor %}]</th>
             </tr>
         {% endfor %}
         </tbody>
