@@ -5,7 +5,7 @@
     <div class="card-body">
       <h5 class="card-title">Get Car</h5>
       <hr />
-      <form action='/car/get' method='POST'>
+      <form class="needs-validation" novalidate action='/car/get' method='POST'>
         {% csrf_token %}
         <div class="mb-3">
           <label for="engine_number" class="form-label">Engine Number</label>
@@ -13,12 +13,22 @@
             type="number"
             class="form-control"
             name="engine_number"
+            required
           />
+          <div class="invalid-feedback">
+            Please choose a Car.
+          </div>
         </div>
         <button type="submit" class="btn btn-primary">Get</button>
       </form>
-      <hr />
       <!-- show data -->
+      {% if error %}
+        <hr />
+        <div class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+      {% else %}
+      {% if success %}
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -30,9 +40,18 @@
           </tr>
         </thead>
         <tbody>
+          {% for result in success %}
           <tr>
+            <th scope="col">{{forloop.counter}}</th>
+            <th scope="col">{{result.engine_number}}</th>
+            <th scope="col">{{result.model}}</th>
+            <th scope="col">{{result.manufacture_year}}</th>
           </tr>
+          {% endfor %}
         </tbody>
+      </table>
+      {% endif %}
+      {% endif %}
     </div>
   </div>
 {% endblock %}

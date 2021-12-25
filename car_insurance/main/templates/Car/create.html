@@ -5,21 +5,29 @@
     <div class="card-body">
       <h5 class="card-title">Create Car</h5>
       <hr />
-      
-      <form action='/car/add' method='POST'>
+      <div class="alert alert-warning" role="alert">
+        Feilds with * are required.
+      </div>
+      <form class="needs-validation" novalidate action='/car/add' method='POST'>
         {% csrf_token %}
         <div class="col-md-12 mb-3">
-        <label for="customerID" class="form-label">Customer ID</label>
+        <label for="customerID" class="form-label">Customer ID *</label>
         <select required class="form-select" aria-label="Choose Customer ID" name="customerID">
           <option value='' selected disabled>Open this select menu</option>
           {% for cust in cust_list %}
           <option value="{{cust.customer_id}}">{{cust.customer_id}} - {{cust.customer_name}}</option>
           {% endfor %}
         </select>
+        <div class="invalid-feedback">
+          Please Select a Customer.
+        </div>
         </div>
         <div class="col-md-12 mb-3">
-          <label for="engine_number" class="form-label">Engine Number</label>
+          <label for="engine_number" class="form-label">Engine Number *</label>
           <input type="number" class="form-control" name="engine_number"  required/>
+          <div class="invalid-feedback">
+            Please Enter Customer Car's Engine Number.
+          </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
@@ -39,6 +47,16 @@
         
         <button type="submit" class="btn btn-success">Create</button>
       </form>
+      {% if error %}
+      <div class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+      {% endif %}
+      {% if success %}
+      <div class="alert alert-success" role="alert">
+        {{success}}
+      </div>
+      {% endif %}
     </div>
   </div>
   {% endblock %}

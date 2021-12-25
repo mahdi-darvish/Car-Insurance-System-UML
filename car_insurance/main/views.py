@@ -29,11 +29,12 @@ def editCustomer(request):
     error = ''
     success = ''
     prompt = ''
+    print(request)
     cust_id = None
     if request.method == "GET":
         cust_id = request.GET.get('CustomerID')
         cust = Customer.get(cust_id)
-        print(cust)
+        
         if not cust:
             error = 'Customer ID not found'
         else:
@@ -153,7 +154,7 @@ def deleteCar(request):
             success = 'Car {} successfully deleted'.format(engine_number)
     print(error)
     print(success)
-    return render(request, 'Car/delete.html', {'success': success, 'error': error})
+    return render(request, 'Car/delete.html', {'error': error, 'success': success})
 # ---------------------------
 
 # policy
