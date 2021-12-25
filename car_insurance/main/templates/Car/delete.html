@@ -4,7 +4,7 @@
     <div class="card-body">
       <h5 class="card-title">Delete Car</h5>
       <hr />
-      <form action='/car/delete' method='POST'>
+      <form class="needs-validation" novalidate action='/car/delete' method='POST'>
         {% csrf_token %}
         <div class="mb-3">
           <label for="engine_number" class="form-label">Engine Number</label>
@@ -12,10 +12,28 @@
             type="number"
             class="form-control"
             name="engine_number"
+            required
           />
+          <div class="invalid-feedback">
+            Please choose a Car.
+          </div>
         </div>
         <button type="submit" class="btn btn-danger">Delete</button>
       </form>
+      {{error}}
+      {% if error %}
+        <hr />
+        <div class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+      {% else %}
+      {% if success %}
+      <hr />
+        <div class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+      {% endif %}
+      {% endif %}
     </div>
   </div>
 {% endblock %}

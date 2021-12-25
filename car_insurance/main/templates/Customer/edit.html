@@ -31,26 +31,32 @@
       {% else %}
       {% if success %}
       <hr>
-      <form action="/customer/edit" method='POST'>
+      <form class="needs-validation" novalidate action="/customer/edit" method='POST'>
         {% csrf_token %}
         <div class="col-md-12 mb-3">
           <label for="CustomerID" class="form-label">Customer ID</label>
           <input value="{{success.customer_id}}" type="number" class="form-control" name="CustomerID" readonly />
         </div>
         <div class="col-md-12 mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input value="{{success.email}}" type="email" class="form-control" name="email" />
+          <label for="email" class="form-label">Email *</label>
+          <input value="{{success.email}}" type="email" class="form-control" name="email" required />
+          <div class="invalid-feedback">
+            Please Enter Customer's Email.
+          </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
             <label for="name" class="form-label">Name</label>
-            <input value="{{success.customer_name}}" type="text" class="form-control" name="name" />
+            <input value="{{success.customer_name}}" type="text" class="form-control" name="name" required />
           </div>
           <div class="col-md-6">
             <label for="phone" class="form-label"
-              >Phone number</label
+              >Phone number *</label
             >
-            <input value="{{success.phone}}" type="number" class="form-control" name="phone" />
+            <input required value="{{success.phone}}" type="number" class="form-control" name="phone" />
+            <div class="invalid-feedback">
+              Please Enter Phone Number.
+            </div>
           </div>
         </div>
         <div class="col-md-12 mb-3">
