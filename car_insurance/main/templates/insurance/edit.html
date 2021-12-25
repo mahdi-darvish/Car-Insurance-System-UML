@@ -72,11 +72,11 @@
         </div>
         <div class="col-md-6">
           <label for="start" class="form-label">Start Date</label>
-          <input value="{{success.start_date}}" type="date" class="form-control" name="start" />
+          <input value="{{success.start_date |date:"Y-m-d"}}" type="date" class="form-control" name="start" />
         </div>
         <div class="col-md-6">
           <label for="finish" class="form-label">End Date</label>
-          <input value="{{success.end_date}}" type="date" class="form-control" name="finish" />
+          <input value="{{success.end_date |date:"Y-m-d"}}" type="date" class="form-control" name="finish" />
         </div>
         <div class="col-md-4">
           <label for="type" class="form-label">Type</label>
