@@ -105,7 +105,6 @@ def editCar(request):
             error = 'Car Engine number not found.'
         else:
             success = car[0]
-
     if request.method == "POST":
         engine_number = request.POST.get('engineNum')
         model = request.POST.get('model')
@@ -242,10 +241,10 @@ def getPolicy(request):
         if not policy:
             error = 'Policy ID not found.'
         else:
-            success = policy
+            success = policy[0]
     print(error)
     print(success)
-    return render(request, 'insurance/get.html', {'error':error, 'success':success[0]})
+    return render(request, 'insurance/get.html', {'error':error, 'success':success})
 
 
 def listPolicies(request):
