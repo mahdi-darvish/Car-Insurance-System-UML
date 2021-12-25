@@ -1,22 +1,32 @@
-{% extends 'insurance/index.html' %}
-
-{% block policyDelete %} 
+{% extends 'insurance/index.html' %} {% block policyDelete %}
 <div class="card bg-light mb-3">
-    <div class="card-body">
-      <h5 class="card-title">Delete Policy</h5>
-      <hr />
-      <form action="/insurance/delete" method='POST'>
-        {% csrf_token %}
-        <div class="mb-3">
-          <label for="policy_id" class="form-label">Policy ID</label>
-          <input
-            type="number"
-            class="form-control"
-            name="policy_id"
-          />
+  <div class="card-body">
+    <h5 class="card-title">Delete Policy</h5>
+    <hr />
+    <form
+      class="needs-validation"
+      novalidate
+      action="/insurance/delete"
+      method="POST"
+    >
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="policy_id" class="form-label">Policy ID</label>
+        <input type="number" class="form-control" name="policy_id" required/>
+        <div class="invalid-feedback">
+          Please enter ID
         </div>
-        <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
-    </div>
+      </div>
+      
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    {% if error %}
+    <hr />
+    <div class="alert alert-danger" role="alert">{{error}}</div>
+    {% else %} {% if success %}
+    <hr />
+    <div class="alert alert-success" role="alert">{{success}}</div>
+    {% endif %} {% endif %}
   </div>
+</div>
 {% endblock %}
