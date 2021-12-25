@@ -22,7 +22,6 @@
       </div>
       <div class="col-md-12 mb-3">
         <label for="cars" class="form-label">Cars</label>
-        
         {% if cars.count != 0 %}
         <select
           required
@@ -79,7 +78,8 @@
       {% else %}
       
       <div class="alert alert-danger" role="alert">
-       This customer doesn't have any car so you can't issue a policy. <a href="/car/add">Add car </a>  
+       This customer doesn't have any car so you can't issue a policy.<a href="/car/add">Add car </a> <br>
+       Or customer does not exist  <a href="/customer/add">Add Customer</a>
       </div>
       
       {% endif %}

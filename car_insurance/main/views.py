@@ -7,7 +7,7 @@ from .models import Car_table, Policy_table
 from main.Classes.Notification import Notification
 
 notif = Notification()
-notif.check()
+# notif.check()
 
 # Customer
 def addCustomer(request):
