@@ -23,7 +23,7 @@ class Notification:
         receivers = self.check()
         subject = self.title
         sender = settings.EMAIL_HOST_USER
-        message = 'Hope you are enjoying your Django Tutorials'
+        message = 'your policy is about to end!'
         send_mail(subject, 
-            message, sender, ['ganj.ashkan79@gmail.com'])
+            message, sender, receivers)
         
