@@ -16,7 +16,6 @@ class Car:
                 flag = True
                 return flag
         cust = Customer_table.objects.get(customer_id=customer_id)
-        print(cust)
         Car_table.objects.create(customer_id=cust, engine_number=self.engineNum, model=self.model, manufacture_year=self.yearOfManufacture)
         return flag
 

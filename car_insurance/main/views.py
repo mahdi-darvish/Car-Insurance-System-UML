@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from main import models
 from main.Classes.Cusotmer import Customer
 from main.Classes.Car import Car
+from main.Classes.Policy import Policy
 from .models import Car_table
 
 
@@ -174,20 +175,28 @@ def addPolicy_cust(request):
     return render(request, 'insurance/create.html', {})
 
 def addPolicy_car(request, customer_id):
+    error = ''
+    success = ''
     cars = Car_table.objects.filter(customer_id=customer_id)
     if request.method=="POST":
         customer_id = request.POST.get('customerID')
         engine_number = request.POST.get('cars')
         price = request.POST.get('price')
-        status = True
-        type = request.POST.get('cars')
-        # car = Car(engine_number, model, manufacture_year)
-        # response = car.add(customer_id)
-        # if response:
-        #     error = 'Car Engine already exist.'     
-        # else:
-        #     success = 'Car, {}, successfully added.'.format(engine_number)
-    return render(request, 'insurance/create_2.html', {'customer_id': customer_id, 'cars': cars})
+        status = request.POST.get('status')
+        start = request.POST.get('start')
+        finish = request.POST.get('finish')
+        type = request.POST.get('type')
+    
+        policy = Policy(customer_id, engine_number, start, finish, price, status, type )
+        response = policy.issuePolicy()
+        if response:
+            error = 'This car already has a policy.'     
+        else:
+            success = 'Policy successfully added to the {} car.'.format(engine_number)
+
+        print(error)
+        print(success)
+    return render(request, 'insurance/create_2.html', {'customer_id': customer_id, 'cars': cars, 'error':error, 'success':success})
 
 
 def editPolicy(request): 
