@@ -2,17 +2,20 @@ from django.core.mail import send_mail
 from main.models import Notification_table, Policy_table
 
 class Notification:
-    def __init__(self, notif_id):
-        self.notif_id = notif_id
+    def __init__(self):
         self.title = 'insurance'
         self.policies = []
+        
 
     def check(self):
         list_policy =  Policy_table.objects.all()
         for item in list_policy:
+            print(item.end_date.timestamp())
             left = item.end_date - item.start_date
-            if left <= 5:
-                self.policies.append(item)
+            # if left < 6:
+            #     self.policies.append(item)
+        print(list_policy)
+        self.check()
 
  
     def send(self):
@@ -25,4 +28,5 @@ class Notification:
         'ganj.ashkan@gmail.com',
         receivers,
         fail_silently=False)
+        print('sent')
 

@@ -4,11 +4,12 @@ from main.Classes.Cusotmer import Customer
 from main.Classes.Car import Car
 from main.Classes.Policy import Policy
 from .models import Car_table, Policy_table
+from main.Classes.Notification import Notification
 
+notif = Notification()
+notif.check()
 
 # Customer
-
-
 def addCustomer(request):
     error = ''
     success = ''

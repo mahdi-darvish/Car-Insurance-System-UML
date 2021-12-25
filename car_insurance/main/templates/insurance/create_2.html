@@ -1,11 +1,14 @@
-{% extends 'insurance/index.html' %}
-
-{% block policyCreate %}
+{% extends 'insurance/index.html' %} {% block policyCreate %}
 <div class="card bg-light mb-3">
   <div class="card-body">
     <h5 class="card-title">Issue Policy</h5>
     <hr />
-    <form class="needs-validation" novalidate action='/insurance/add/{{customer_id}}' method='POST'>
+    <form
+      class="needs-validation"
+      novalidate
+      action="/insurance/add/{{customer_id}}"
+      method="POST"
+    >
       {% csrf_token %}
       <div class="mb-3">
         <label for="customerID" class="form-label">Customer ID</label>
@@ -19,45 +22,50 @@
       </div>
       <div class="col-md-12 mb-3">
         <label for="cars" class="form-label">Cars</label>
-        <select required class="form-select" aria-label="Choose Customer ID" name="cars">
-          <option value='' selected disabled>Open this select menu</option>
+        
+        {% if cars.count != 0 %}
+        <select
+          required
+          class="form-select"
+          aria-label="Choose Customer ID"
+          name="cars"
+        >
+          <option value="" selected disabled>Open this select menu</option>
           {% for car in cars %}
           <option value="{{car.engine_number}}">{{car.engine_number}}</option>
           {% endfor %}
         </select>
-        <div class="invalid-feedback">
-          Please Select a Car.
-        </div>
-        </div>
+        <div class="invalid-feedback">Please Select a Car.</div>
+      </div>
       <div class="row mb-3">
-     
         <div class="col-md-6">
           <label for="start" class="form-label">Start Date</label>
-          <input type="date" class="form-control" name="start" required/>
-          <div class="invalid-feedback">
-            Please Select a start.
-          </div>
+          <input type="date" class="form-control" name="start" required />
+          <div class="invalid-feedback">Please Select a start.</div>
         </div>
-        
+
         <div class="col-md-6 mb-3">
           <label for="finish" class="form-label">End Date</label>
           <input type="date" class="form-control" name="finish" required />
-          <div class="invalid-feedback">
-            Please Select an End.
-          </div>
+          <div class="invalid-feedback">Please Select an End.</div>
         </div>
         <div class="col-md-4 mb-3">
           <label for="status" class="form-label">Status</label>
-          <select required class="form-select" aria-label="Choose Customer ID" name="status">
-            <option value='' selected disabled>Open this select menu</option>
-            <option value='True'>Active</option>
-            <option value='False'>To be activated</option>
+          <select
+            required
+            class="form-select"
+            aria-label="Choose Customer ID"
+            name="status"
+          >
+            <option value="" selected disabled>Open this select menu</option>
+            <option value="True">Active</option>
+            <option value="False">To be activated</option>
           </select>
-          </div>
-          <div class="col-md-4">
-            <label for="price" class="form-label">price</label>
-            <input type="number" class="form-control" name="price" />
-          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="price" class="form-label">price</label>
+          <input type="number" class="form-control" name="price" />
+        </div>
         <div class="col-md-4">
           <label for="type" class="form-label">Type</label>
           <select name="type" class="form-select">
@@ -68,7 +76,19 @@
         </div>
       </div>
       <button type="submit" class="btn btn-success">Create</button>
+      {% else %}
+      
+      <div class="alert alert-danger" role="alert">
+       This customer doesn't have any car so you can't issue a policy. <a href="/car/add">Add car </a>  
+      </div>
+      
+      {% endif %}
     </form>
+    {% if error %}
+    <div class="alert alert-danger" role="alert">{{error}}</div>
+    {% endif %} {% if success %}
+    <div class="alert alert-success" role="alert">{{success}}</div>
+    {% endif %}
   </div>
 </div>
-  {% endblock %}
+{% endblock %}
