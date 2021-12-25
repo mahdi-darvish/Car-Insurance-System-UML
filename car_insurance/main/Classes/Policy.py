@@ -34,8 +34,17 @@ class Policy:
     def edit(self, policyID):
         pass
 
-    def delete(self, policyID):
-        pass
+    @staticmethod
+    def delete(policyID):
+        flag = True
+        items = Policy_table.objects.values_list('policy_id')
+        for item in items:
+            if int(item[0]) == int(policyID):
+                flag = False
+                policy = Policy_table.objects.get(policy_id=policyID)
+                policy.delete()
+                return flag
+        return flag
 
     @staticmethod
     def list():

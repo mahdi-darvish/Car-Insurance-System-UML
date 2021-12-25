@@ -153,7 +153,7 @@ def deleteCar(request):
             success = 'Car {} successfully deleted'.format(engine_number)
     print(error)
     print(success)
-    return render(request, 'Car/delete.html', {})
+    return render(request, 'Car/delete.html', {'success': success, 'error': error})
 # ---------------------------
 
 # policy
@@ -209,7 +209,7 @@ def getPolicy(request):
         PolicyID = request.POST.get('PolicyID')
         policy = Policy.get(PolicyID)
         if not policy:
-            error = 'Engine Number not found'
+            error = 'Policy ID not found.'
         else:
             success = policy
     print(error)
@@ -223,5 +223,16 @@ def listPolicies(request):
 
 
 def deletePolicy(request):
-    return render(request, 'insurance/delete.html', {})
+    error = ''
+    success = ''
+    if request.method == "POST":
+        policy_id = request.POST.get('policy_id')
+        policy = Policy.delete(policy_id)
+        if policy:
+            error = 'Policy ID not found'
+        else:
+            success = 'Policy {} successfully deleted'.format(policy_id)
+    print(error)
+    print(success)
+    return render(request, 'insurance/delete.html', {'success': success, 'error': error})
 # ---------------------------

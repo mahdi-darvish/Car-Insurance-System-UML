@@ -5,14 +5,14 @@
     <div class="card-body">
       <h5 class="card-title">Delete Policy</h5>
       <hr />
-      <form>
+      <form action="/insurance/delete" method='POST'>
+        {% csrf_token %}
         <div class="mb-3">
-          <label for="PolicyID" class="form-label">Policy ID</label>
+          <label for="policy_id" class="form-label">Policy ID</label>
           <input
             type="number"
             class="form-control"
-            id="PolicyID"
-            aria-describedby="PolicyID"
+            name="policy_id"
           />
         </div>
         <button type="submit" class="btn btn-danger">Delete</button>

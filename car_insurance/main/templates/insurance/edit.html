@@ -5,6 +5,18 @@
   <div class="card-body">
     <h5 class="card-title">Edit Policy</h5>
     <hr />
+    <form action='/insurance/get' method='POST'>
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="PolicyID" class="form-label">Policy ID</label>
+        <input
+          type="number"
+          class="form-control"
+          name="PolicyID"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Show</button>
+    </form>
     <form>
       <div class="mb-3">
         <label for="customerID" class="form-label">Customer ID</label>
