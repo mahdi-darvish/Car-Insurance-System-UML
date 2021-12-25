@@ -1,5 +1,5 @@
 from django.db.models.expressions import F
-from main.models import Customer_table
+from main.models import Car_table, Customer_table, Policy_table
 
 class Customer:
     def __init__(self, address, name, email, phone):
@@ -21,7 +21,9 @@ class Customer:
     @staticmethod
     def get(customerID):
         cust = Customer_table.objects.filter(customer_id=customerID)
-        return cust
+        cars = Car_table.objects.filter(customer_id=customerID)
+        policies = Policy_table.objects.filter(customer_id=customerID)
+        return cust, cars, policies
 
     def update(self, customerID):
         cust = Customer_table.objects.filter(customer_id=customerID).update(customer_name=self.name, address=self.address, email=self.email, phone=self.phone)
