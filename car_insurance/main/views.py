@@ -5,9 +5,7 @@ from main.Classes.Car import Car
 from main.Classes.Policy import Policy
 from .models import Car_table, Policy_table
 # from main.Classes.Notification import Notification
-
-# notif = Notification()
-# notif.check()
+# import schedule
 
 # Customer
 def addCustomer(request):
