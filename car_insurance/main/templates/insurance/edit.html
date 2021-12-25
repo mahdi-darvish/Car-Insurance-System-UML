@@ -5,17 +5,27 @@
   <div class="card-body">
     <h5 class="card-title">Edit Policy</h5>
     <hr />
-    <form action='/insurance/edit' method='GET'>
+    <form class="needs-validation" novalidate action='/insurance/edit' method='GET'>
       <div class="mb-3">
         <label for="policy_id" class="form-label">Policy ID</label>
         <input
           type="number"
           class="form-control"
           name="policy_id"
+          required
         />
+        <div class="invalid-feedback">
+          Please choose a Policy.
+        </div>
       </div>
       <button type="submit" class="btn btn-primary">Show</button>
     </form>
+    {% if error %}
+        <hr />
+        <div class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+    {% else %}
     {% if success %}
     <form action='/insurance/edit' method='POST'>
       {% csrf_token %}
@@ -79,6 +89,7 @@
       </div>
       <button type="submit" class="btn btn-warning">Edit</button>
     </form>
+    {% endif %}
     {% endif %}
   </div>
 </div>

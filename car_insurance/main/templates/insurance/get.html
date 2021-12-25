@@ -5,7 +5,7 @@
     <div class="card-body">
       <h5 class="card-title">Get Policy</h5>
       <hr />
-      <form action='/insurance/get' method='POST'>
+      <form class="needs-validation" novalidate action='/insurance/get' method='POST'>
         {% csrf_token %}
         <div class="mb-3">
           <label for="PolicyID" class="form-label">Policy ID</label>
@@ -13,11 +13,22 @@
             type="number"
             class="form-control"
             name="PolicyID"
+            required
           />
+          <div class="invalid-feedback">
+            Please choose a Policy.
+          </div>
         </div>
         <button type="submit" class="btn btn-primary">Show</button>
       </form>
-      <hr />
+
+      {% if error %}
+        <hr />
+        <div class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+      {% else %}
+      {% if success %}
       <!-- show data -->
       <table class="table table-striped table-hover">
         <thead>
@@ -42,6 +53,8 @@
             <th scope="col">{{success.type}}</th>
           </tr>
         </tbody>
+        {% endif %}
+      {% endif %}
     </div>
   </div>
 {% endblock %}
