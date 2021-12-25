@@ -32,7 +32,8 @@ class Policy:
         return policy
 
     def edit(self, policyID):
-        pass
+        policy = Policy_table.objects.filter(policy_id=policyID).update(price=self.price, status=self.status, type=self.policyType, start_date=self.startDate, end_date=self.endDate)
+        return policy
 
     @staticmethod
     def delete(policyID):

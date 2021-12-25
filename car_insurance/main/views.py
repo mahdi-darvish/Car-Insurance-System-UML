@@ -200,7 +200,37 @@ def addPolicy_car(request, customer_id):
 
 
 def editPolicy(request):
-    return render(request, 'insurance/edit.html', {})
+    error = ''
+    success = ''
+    prompt = ''
+    engine_num = ''
+    if request.method == "GET":
+        policy_id = request.GET.get('policy_id')
+        print(policy_id)
+        policy = Policy.get(policy_id)
+        if not policy:
+            error = 'Policy ID not found.'
+        else:
+            success = policy[0]
+    if request.method == "POST":
+        policy_id = request.POST.get('policy_id')
+        customerID = request.POST.get('customerID')
+        engine_number = request.POST.get('engine_number')
+        price = request.POST.get('price')
+        status = request.POST.get('status')   
+        start = request.POST.get('start')
+        finish = request.POST.get('finish')
+        type = request.POST.get('type')
+        print(type)
+        if status == 'Active':
+            status = True
+        else:
+            status = False
+        policy = Policy(customerID, engine_number, start, finish, price, status, type)
+        policy.edit(policy_id)
+        prompt = 'Car with Engine number {}, successfully updated.'.format(policy_id)
+
+    return render(request, 'insurance/edit.html', {'error': error, 'success': success, 'prompt': prompt})
 
 
 def getPolicy(request):

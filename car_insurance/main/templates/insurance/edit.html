@@ -5,40 +5,72 @@
   <div class="card-body">
     <h5 class="card-title">Edit Policy</h5>
     <hr />
-    <form action='/insurance/get' method='POST'>
-      {% csrf_token %}
+    <form action='/insurance/edit' method='GET'>
       <div class="mb-3">
-        <label for="PolicyID" class="form-label">Policy ID</label>
+        <label for="policy_id" class="form-label">Policy ID</label>
         <input
           type="number"
           class="form-control"
-          name="PolicyID"
+          name="policy_id"
         />
       </div>
       <button type="submit" class="btn btn-primary">Show</button>
     </form>
-    <form>
+    {% if success %}
+    <form action='/insurance/edit' method='POST'>
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="policy_id" class="form-label">Policy ID</label>
+        <input
+        value="{{success.policy_id}}"
+          readonly 
+          type="number"
+          class="form-control"
+          name="policy_id"
+        />
+      </div>
       <div class="mb-3">
         <label for="customerID" class="form-label">Customer ID</label>
         <input
+        readonly value="{{success.customer_id.customer_id}}"
           type="number"
           class="form-control"
-          id="customerID"
-          aria-describedby="emailHelp"
+          name="customerID"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="engine_number" class="form-label">Engine number</label>
+        <input
+        readonly value="{{success.engine_number.engine_number}}"
+          type="number"
+          class="form-control"
+          name="engine_number"
         />
       </div>
       <div class="row mb-3">
         <div class="col-md-4">
           <label for="price" class="form-label">price</label>
-          <input type="number" class="form-control" id="price" />
+          <input type value="{{success.price}}"="number" class="form-control" name="price" />
         </div>
         <div class="col-md-4">
           <label for="status" class="form-label">Status</label>
-          <input type="text" class="form-control" id="price" />
+          <select  name="status" class="form-select">
+            <option>Active</option>
+            <option>To be activated</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="start" class="form-label">Start Date</label>
+          <input value="{{success.start_date}}" type="date" class="form-control" name="start" />
+        </div>
+        <div class="col-md-6">
+          <label for="finish" class="form-label">End Date</label>
+          <input value="{{success.end_date}}" type="date" class="form-control" name="finish" />
         </div>
         <div class="col-md-4">
           <label for="type" class="form-label">Type</label>
-          <select id="type" class="form-select">
+          <select value="{{success.types}}" name="type" class="form-select">
             <option>type1</option>
             <option>type2</option>
             <option>type3</option>
@@ -47,6 +79,7 @@
       </div>
       <button type="submit" class="btn btn-warning">Edit</button>
     </form>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
