@@ -26,9 +26,6 @@ class Customer:
     def update(self, customerID):
         cust = Customer_table.objects.filter(customer_id=customerID).update(customer_name=self.name, address=self.address, email=self.email, phone=self.phone)
         return cust
-
-    def updateProfile():
-        pass
     
     @staticmethod
     def list():

@@ -54,9 +54,6 @@ def editCustomer(request):
     return render(request, 'Customer/edit.html', {'error':error, 'success':success, 'prompt': prompt})
 
 
-def editCustomerProfile(request):
-    return render(request, 'Customer/editProfile.html', {})
-
 
 def getCustomer(request):
     error = ''
