@@ -1,6 +1,7 @@
 from django.core.mail import send_mail
 from main.models import Notification_table, Policy_table
-
+from django.core.mail import send_mail
+from django.conf import settings
 class Notification:
     def __init__(self):
         self.title = 'insurance'
@@ -16,14 +17,9 @@ class Notification:
     
     def send(self):
         receivers = self.check()
-
-        print(receivers)
-
-        send_mail(
-        self.title,
-        'Your Insurance is about to expire, Please recharge it a soon as possible.',
-        'ganj.ashkan@gmail.com',
-        ['AshkanGanj@gmail.com'],
-        fail_silently=False)
-        print('sent')
-
+        subject = self.title
+        sender = settings.EMAIL_HOST_USER
+        message = 'Hope you are enjoying your Django Tutorials'
+        send_mail(subject, 
+            message, sender, ['ganj.ashkan79@gmail.com'])
+        
