@@ -1,11 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from main import models
 from main.Classes.Cusotmer import Customer
 from main.Classes.Car import Car
 from main.Classes.Policy import Policy
 from .models import Car_table, Policy_table
-
 
 
 # Customer
@@ -14,7 +11,7 @@ from .models import Car_table, Policy_table
 def addCustomer(request):
     error = ''
     success = ''
-    if request.method=="POST":
+    if request.method == "POST":
         email = request.POST.get('email')
         address = request.POST.get('address')
         name = request.POST.get('name')
@@ -25,7 +22,7 @@ def addCustomer(request):
             error = 'Email already in use.'
         else:
             success = 'Customer, {}, successfully added.'.format(name)
-    return render(request, 'Customer/create.html', {'error':error, 'success':success})
+    return render(request, 'Customer/create.html', {'error': error, 'success': success})
 
 
 def editCustomer(request):
@@ -33,15 +30,16 @@ def editCustomer(request):
     success = ''
     prompt = ''
     cust_id = None
-    if request.method=="GET":
+    if request.method == "GET":
         cust_id = request.GET.get('CustomerID')
         cust = Customer.get(cust_id)
+        print(cust)
         if not cust:
             error = 'Customer ID not found'
         else:
             success = cust[0]
 
-    if request.method=="POST":
+    if request.method == "POST":
         cust_id = request.POST.get('CustomerID')
         email = request.POST.get('email')
         address = request.POST.get('address')
@@ -52,14 +50,13 @@ def editCustomer(request):
         cust = Customer(address, name, email, phone)
         cust.update(cust_id)
         prompt = 'Customer number {}, successfully updated.'.format(cust_id)
-    return render(request, 'Customer/edit.html', {'error':error, 'success':success, 'prompt': prompt})
-
+    return render(request, 'Customer/edit.html', {'error': error, 'success': success, 'prompt': prompt})
 
 
 def getCustomer(request):
     error = ''
     success = ''
-    if request.method=="POST":
+    if request.method == "POST":
         cust_id = request.POST.get('CustomerID')
         cust = Customer.get(cust_id)
         if not cust:
@@ -67,7 +64,7 @@ def getCustomer(request):
         else:
             success = cust
 
-    return render(request, 'Customer/get.html', {'error':error, 'success':success})
+    return render(request, 'Customer/get.html', {'error': error, 'success': success})
 
 
 def listCustomers(request):
@@ -80,7 +77,7 @@ def addCar(request):
     error = ''
     success = ''
     cust_list = Customer.list()
-    if request.method=="POST":
+    if request.method == "POST":
         customer_id = request.POST.get('customerID')
         engine_number = request.POST.get('engine_number')
         model = request.POST.get('model')
@@ -88,11 +85,11 @@ def addCar(request):
         car = Car(engine_number, model, manufacture_year)
         response = car.add(customer_id)
         if response:
-            error = 'Car Engine already exist.'     
+            error = 'Car Engine already exist.'
         else:
             success = 'Car, {}, successfully added.'.format(engine_number)
 
-    return render(request, 'Car/create.html', {'error':error, 'success':success, 'cust_list': cust_list})
+    return render(request, 'Car/create.html', {'error': error, 'success': success, 'cust_list': cust_list})
 
 
 def editCar(request):
@@ -100,7 +97,7 @@ def editCar(request):
     success = ''
     prompt = ''
     engine_number = None
-    if request.method=="GET":
+    if request.method == "GET":
         engine_number = request.GET.get('engine_number')
         car = Car.get(engine_number)
         if not car:
@@ -108,24 +105,25 @@ def editCar(request):
         else:
             success = car[0]
 
-    if request.method=="POST":
+    if request.method == "POST":
         engine_number = request.POST.get('engineNum')
         model = request.POST.get('model')
         manufacture_year = request.POST.get('yearOfManufacture')
 
         car = Car(engine_number, model, manufacture_year)
         car.edit(engine_number)
-        prompt = 'Car with Engine number {}, successfully updated.'.format(engine_number)
+        prompt = 'Car with Engine number {}, successfully updated.'.format(
+            engine_number)
     print(success)
     print(error)
     print(prompt)
-    return render(request, 'Car/edit.html', {'error':error, 'success':success, 'prompt': prompt})
+    return render(request, 'Car/edit.html', {'error': error, 'success': success, 'prompt': prompt})
 
 
 def getCar(request):
     error = ''
     success = ''
-    if request.method=="POST":
+    if request.method == "POST":
         engine_number = request.POST.get('engine_number')
         car = Car.get(engine_number)
         if not car:
@@ -134,7 +132,7 @@ def getCar(request):
             success = car
     print(error)
     print(success)
-    return render(request, 'Car/get.html', {'error':error, 'success':success})
+    return render(request, 'Car/get.html', {'error': error, 'success': success})
 
 
 def listCars(request):
@@ -146,7 +144,7 @@ def listCars(request):
 def deleteCar(request):
     error = ''
     success = ''
-    if request.method=="POST":
+    if request.method == "POST":
         engine_number = request.POST.get('engine_number')
         car = Car.delete(engine_number)
         if car:
@@ -164,7 +162,7 @@ def deleteCar(request):
 def addPolicy_cust(request):
     error = ''
     success = ''
-    if request.method=="POST":
+    if request.method == "POST":
         cust_id = request.POST.get('CustomerID')
         customer = Customer.get(cust_id)
         if not customer:
@@ -174,11 +172,12 @@ def addPolicy_cust(request):
 
     return render(request, 'insurance/create.html', {})
 
+
 def addPolicy_car(request, customer_id):
     error = ''
     success = ''
     cars = Car_table.objects.filter(customer_id=customer_id)
-    if request.method=="POST":
+    if request.method == "POST":
         customer_id = request.POST.get('customerID')
         engine_number = request.POST.get('cars')
         price = request.POST.get('price')
@@ -200,7 +199,6 @@ def addPolicy_car(request, customer_id):
 
 
 def editPolicy(request):
-
     return render(request, 'insurance/edit.html', {})
 
 

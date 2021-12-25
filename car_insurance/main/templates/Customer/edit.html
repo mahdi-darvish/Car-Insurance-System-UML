@@ -5,15 +5,32 @@
     <div class="card-body">
       <h5 class="card-title">Edit Customer</h5>
       <hr />
-      <form action="" method='GET'>
-        <div class="col-md-12 mb-3">
+      <form class="needs-validation" novalidate method='GET'>
+        <div class="mb-3">
           <label for="CustomerID" class="form-label">Customer ID</label>
-          <input type="number" class="form-control" name="CustomerID" required />
+          <input
+            type="number"
+            class="form-control"
+            name="CustomerID"
+            id="CustomerID"
+            required
+          />
+          <div class="invalid-feedback">
+            Please choose a Customer.
+          </div>
         </div>
-        <button type="submit" class="btn btn-success">Get Customer</button>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Get Customer</button>
+        </div>
       </form>
-      
+      {% if error %}
+        <hr />
+        <div class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+      {% else %}
       {% if success %}
+      <hr>
       <form action="/customer/edit" method='POST'>
         {% csrf_token %}
         <div class="col-md-12 mb-3">
@@ -43,6 +60,8 @@
         <button type="submit" class="btn btn-warning">Edit</button>
       </form>
       {% endif %}
+      {% endif %}
+      
     </div>
   </div>
 

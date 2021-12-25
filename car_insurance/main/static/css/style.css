@@ -28,3 +28,7 @@ a {
 .active{
   border-radius: 0.5rem!important;
 }
+
+.alert{
+  border-radius: 0.5rem!important;
+}
