@@ -49,7 +49,11 @@
       </form>
       {% endif %}
       {% endif %}
-      
+      {% if prompt %}
+      <div class="alert alert-success" role="success">
+        {{prompt}}
+      </div>
+      {% endif %}
     </div>
   </div>
 

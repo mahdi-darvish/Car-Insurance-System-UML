@@ -17,6 +17,8 @@
             <th scope="col">Start</th>
             <th scope="col">End</th>
             <th scope="col">Type</th>
+            <th scope="col">Car's Engine Number</th>
+            <th scope="col">Customer ID</th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +31,8 @@
             <th scope="col">{{result.start_date}}</th>
             <th scope="col">{{result.end_date}}</th>
             <th scope="col">{{result.type}}</th>
+            <th scope="col">{{result.engine_number.engine_number}}</th>
+            <th scope="col">{{result.customer_id.customer_id}}</th>
           </tr>
           {% endfor %}
         </tbody>
