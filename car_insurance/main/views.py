@@ -5,7 +5,6 @@ from main.Classes.Car import Car
 from main.Classes.Policy import Policy
 from .models import Car_table, Policy_table
 from main.Classes.Notification import Notification
-
 from schedule import Scheduler
 import threading
 import time
@@ -310,7 +309,7 @@ def getPolicy(request):
 
 def listPolicies(request):
     results = Policy.list()
-    print(results[0].engine_number.engine_number)
+    
     return render(request, 'insurance/list.html', {'results': results})
 
 
