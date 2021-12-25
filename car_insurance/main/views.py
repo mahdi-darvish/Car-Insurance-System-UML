@@ -39,15 +39,14 @@ def editCustomer(request):
         if cust_id:
             flag = True
         cust = Customer.get(cust_id)
-        
         if not cust:
             if flag:
                 error = 'Customer ID not found'
             else:
                 return render(request, 'Customer/edit.html', {'error': error, 'success': success, 'prompt': prompt})
         else:
-            success = cust[0]
-
+            success = cust[0][0]
+        print(success.email)
     if request.method == "POST":
         cust_id = request.POST.get('CustomerID')
         email = request.POST.get('email')
