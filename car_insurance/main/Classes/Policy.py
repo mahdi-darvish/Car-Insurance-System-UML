@@ -26,8 +26,10 @@ class Policy:
                                             status=self.status, type=self.policyType, start_date=self.startDate, end_date=self.endDate)
         return flag
 
-    def get(self, policyID):
-        pass
+    @staticmethod
+    def get(policyID):
+        policy = Policy_table.objects.filter(policy_id=policyID)
+        return policy
 
     def edit(self, policyID):
         pass
@@ -35,5 +37,6 @@ class Policy:
     def delete(self, policyID):
         pass
 
-    def list(self):
-        pass
+    @staticmethod
+    def list():
+        return Policy_table.objects.all()

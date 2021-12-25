@@ -5,14 +5,14 @@
     <div class="card-body">
       <h5 class="card-title">Get Policy</h5>
       <hr />
-      <form>
+      <form action='/insurance/get' method='POST'>
+        {% csrf_token %}
         <div class="mb-3">
           <label for="PolicyID" class="form-label">Policy ID</label>
           <input
             type="number"
             class="form-control"
-            id="PolicyID"
-            aria-describedby="PolicyID"
+            name="PolicyID"
           />
         </div>
         <button type="submit" class="btn btn-primary">Show</button>
@@ -23,7 +23,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Customer ID</th>
+            <th scope="col">Policy ID</th>
             <th scope="col">Price</th>
             <th scope="col">Status</th>
             <th scope="col">Start</th>
@@ -33,6 +33,13 @@
         </thead>
         <tbody>
           <tr>
+            <th scope="col">1</th>
+            <th scope="col">{{success.policy_id}}</th>
+            <th scope="col">{{success.price}}</th>
+            <th scope="col">{{success.status}}</th>
+            <th scope="col">{{success.start_date}}</th>
+            <th scope="col">{{success.end_date}}</th>
+            <th scope="col">{{success.type}}</th>
           </tr>
         </tbody>
     </div>

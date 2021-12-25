@@ -11,7 +11,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Customer ID</th>
+            <th scope="col">insurance ID</th>
             <th scope="col">Price</th>
             <th scope="col">Status</th>
             <th scope="col">Start</th>
@@ -20,8 +20,17 @@
           </tr>
         </thead>
         <tbody>
+          {% for result in results %}
           <tr>
+            <th scope="col">{{forloop.counter}}</th>
+            <th scope="col">{{result.policy_id}}</th>
+            <th scope="col">{{result.price}}</th>
+            <th scope="col">{% if result.status %}Active{% else %} To be Activated{% endif %}</th>
+            <th scope="col">{{result.start_date}}</th>
+            <th scope="col">{{result.end_date}}</th>
+            <th scope="col">{{result.type}}</th>
           </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>

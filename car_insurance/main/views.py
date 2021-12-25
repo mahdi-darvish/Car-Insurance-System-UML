@@ -4,7 +4,7 @@ from main import models
 from main.Classes.Cusotmer import Customer
 from main.Classes.Car import Car
 from main.Classes.Policy import Policy
-from .models import Car_table
+from .models import Car_table, Policy_table
 
 
 
@@ -199,16 +199,29 @@ def addPolicy_car(request, customer_id):
     return render(request, 'insurance/create_2.html', {'customer_id': customer_id, 'cars': cars, 'error':error, 'success':success})
 
 
-def editPolicy(request): 
+def editPolicy(request):
+
     return render(request, 'insurance/edit.html', {})
 
 
 def getPolicy(request):
-    return render(request, 'insurance/get.html', {})
+    error = ''
+    success = ''
+    if request.method=="POST":
+        PolicyID = request.POST.get('PolicyID')
+        policy = Policy.get(PolicyID)
+        if not policy:
+            error = 'Engine Number not found'
+        else:
+            success = policy
+    print(error)
+    print(success)
+    return render(request, 'insurance/get.html', {'error':error, 'success':success[0]})
 
 
 def listPolicies(request):
-    return render(request, 'insurance/list.html', {})
+    results = Policy.list()
+    return render(request, 'insurance/list.html', {'results': results})
 
 
 def deletePolicy(request):
