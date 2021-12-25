@@ -1,3 +1,4 @@
+from django.db.models.expressions import F
 from django.shortcuts import render, redirect
 from main.Classes.Cusotmer import Customer
 from main.Classes.Car import Car
@@ -29,14 +30,20 @@ def editCustomer(request):
     error = ''
     success = ''
     prompt = ''
+    flag = False
     print(request)
     cust_id = None
     if request.method == "GET":
         cust_id = request.GET.get('CustomerID')
+        if cust_id:
+            flag = True
         cust = Customer.get(cust_id)
         
         if not cust:
-            error = 'Customer ID not found'
+            if flag:
+                error = 'Customer ID not found'
+            else:
+                return render(request, 'Customer/edit.html', {'error': error, 'success': success, 'prompt': prompt})
         else:
             success = cust[0]
 
@@ -97,12 +104,18 @@ def editCar(request):
     error = ''
     success = ''
     prompt = ''
+    flag = False
     engine_number = None
     if request.method == "GET":
         engine_number = request.GET.get('engine_number')
+        if engine_number:
+            flag = True
         car = Car.get(engine_number)
         if not car:
-            error = 'Car Engine number not found.'
+            if flag:
+                error = 'Car Engine number not found.'
+            else:
+                 return render(request, 'Car/edit.html', {'error': error, 'success': success, 'prompt': prompt})
         else:
             success = car[0]
     if request.method == "POST":
@@ -202,14 +215,19 @@ def editPolicy(request):
     error = ''
     success = ''
     prompt = ''
-    engine_num = ''
+    flag = False
     if request.method == "GET":
         policy_id = request.GET.get('policy_id')
-        print(policy_id)
+        if policy_id:
+            flag = True
         policy = Policy.get(policy_id)
         if not policy:
-            error = 'Policy ID not found.'
+            if flag:
+                error = 'Policy ID not found.'
+            else:
+                return render(request, 'insurance/edit.html', {'error': error, 'success': success, 'prompt': prompt})
         else:
+            
             success = policy[0]
     if request.method == "POST":
         policy_id = request.POST.get('policy_id')
