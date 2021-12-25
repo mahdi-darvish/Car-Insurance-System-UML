@@ -20,11 +20,11 @@ class Customer:
 
     @staticmethod
     def get(customerID):
-        cust = Customer_table.objects.get(customer_id=customerID)
+        cust = Customer_table.objects.filter(customer_id=customerID)
         return cust
 
     def update(self, customerID):
-        cust = Customer_table.objects.get(customer_id=customerID).update(customer_name=self.name, address=self.address, email=self.email, phone=self.phone)
+        cust = Customer_table.objects.filter(customer_id=customerID).update(customer_name=self.name, address=self.address, email=self.email, phone=self.phone)
         return cust
 
     

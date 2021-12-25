@@ -18,7 +18,8 @@ urlpatterns = [
     path('car/delete', views.deleteCar, name='deleteCar'),
     # Insurance
     path('insurance', views.listPolicies, name='index'),
-    path('insurance/add', views.addPolicy, name='addPolicy'),
+    path('insurance/add', views.addPolicy_cust, name='addPolicy_cust'),
+    path('insurance/add/<int:customer_id>', views.addPolicy_car, name='addPolicy_car'),
     path('insurance/edit', views.editPolicy, name='editPolicy'),
     path('insurance/delete', views.deletePolicy,
          name='deletePolicy'),

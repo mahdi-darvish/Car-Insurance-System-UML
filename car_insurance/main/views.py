@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from main import models
 from main.Classes.Cusotmer import Customer
 from main.Classes.Car import Car
+from .models import Car_table
 
 
 
@@ -159,11 +160,37 @@ def deleteCar(request):
 # policy
 
 
-def addPolicy(request):
+def addPolicy_cust(request):
+    error = ''
+    success = ''
+    if request.method=="POST":
+        cust_id = request.POST.get('CustomerID')
+        customer = Customer.get(cust_id)
+        if not customer:
+            error = 'Customer ID not founD.'
+        else:
+            return redirect('/insurance/add/{}'.format(cust_id))
+
     return render(request, 'insurance/create.html', {})
 
+def addPolicy_car(request, customer_id):
+    cars = Car_table.objects.filter(customer_id=customer_id)
+    if request.method=="POST":
+        customer_id = request.POST.get('customerID')
+        engine_number = request.POST.get('cars')
+        price = request.POST.get('price')
+        status = True
+        type = request.POST.get('cars')
+        # car = Car(engine_number, model, manufacture_year)
+        # response = car.add(customer_id)
+        # if response:
+        #     error = 'Car Engine already exist.'     
+        # else:
+        #     success = 'Car, {}, successfully added.'.format(engine_number)
+    return render(request, 'insurance/create_2.html', {'customer_id': customer_id, 'cars': cars})
 
-def editPolicy(request):
+
+def editPolicy(request): 
     return render(request, 'insurance/edit.html', {})
 
 
